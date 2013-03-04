@@ -1,3 +1,5 @@
+"""Drop the databases for a given branch."""
+
 from django.core.management.base import BaseCommand
 
 from _private import BranchCommand

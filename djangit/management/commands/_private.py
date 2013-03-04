@@ -1,3 +1,5 @@
+"""Base shared code for management commands."""
+
 from optparse import make_option
 import operator
 
@@ -9,6 +11,9 @@ from djangit.utils import sh, db_name
 
 
 class BranchCommand(BaseCommand):
+
+    """Base class for handling git branch management."""
+
     can_import_settings = True
     option_list = BaseCommand.option_list + (
         make_option('--origin',
@@ -29,9 +34,13 @@ class BranchCommand(BaseCommand):
             sh(operator.methodcaller(method_name)(engine))
 
     def copy_databases(self, branch_name):
+        """Copy all databases in django settings to new branch-specific databases.
+        New database names will end in _<branch_name>.
+        """
         return self._perform_branch_db_operation(branch_name, 'get_copy_command')
 
     def drop_databases(self, branch_name):
+        """Drop all databases in django settings for the given branch."""
         return self._perform_branch_db_operation(branch_name, 'get_drop_command')
 
     def handle_branch(self, *args, **options):
@@ -39,6 +48,7 @@ class BranchCommand(BaseCommand):
         pass
 
     def handle(self, *args, **options):
+        """Setup code, calls subclass's handle_branch method with args and options."""
         from django.conf import settings
         try:
             self.databases = settings.DATABASES_ORIGINAL

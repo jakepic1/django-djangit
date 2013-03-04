@@ -1,3 +1,5 @@
+"""Copy the current databases for a new branch."""
+
 from django.core.management.base import BaseCommand
 
 from _private import BranchCommand
