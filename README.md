@@ -15,7 +15,7 @@ Installation
 ------------
 In your settings file, include ``djangit`` in your INSTALLED_APPS.
 
-By default, djangit will append the current branch name to each database in your django settings module. To ignore certain branches, use the settings variable ``DJANGIT_IGNORE_BRANCH``:
+By default, djangit will append the current branch name to each database in your django settings module. To ignore certain branches, use the settings variable ``DJANGIT_IGNORE_BRANCHES``:
 
 ```python
 DJANGIT_IGNORE_BRANCHES = (
